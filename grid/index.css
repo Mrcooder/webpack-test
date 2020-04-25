@@ -1,0 +1,43 @@
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 70px 1fr 1fr;
+    grid-template-rows: 70px 1fr 1fr;
+}
+
+.container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: aqua;
+    font-size: 30px;
+}
+
+.container div:nth-of-type(4n - 3) {
+     background: blueviolet;
+ }
+
+.container div:nth-of-type(4n - 2) {
+    background: chocolate;
+}
+
+.container div:nth-of-type(4n - 1) {
+    background: gold;
+}
+
+.container div:nth-of-type(1) {
+    grid-column: 2 / span 3;
+}
+
+.container div:nth-of-type(2) {
+    grid-row: 1 / 4;
+}
+
+.container div:nth-of-type(5) {
+    grid-column: 2 / 4;
+}
+
+body {
+    margin: 0;
+}
