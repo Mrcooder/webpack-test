@@ -1,0 +1,8 @@
+body {
+    display: flex;
+    height: 100vh;
+    transition: all .6s;
+    user-select: none;
+    background: linear-gradient(to bottom, white, black);
+}
+
