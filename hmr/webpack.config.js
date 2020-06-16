@@ -1,13 +1,14 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
+const ctxPath = process.env.INIT_CWD || __dirname;
 const config = {
-    context: path.join(__dirname, './'),
+    context: path.join(ctxPath, './'),
     entry: {
         main: './index.jsx',
     },
-    mode: 'production',
 
     module: {
         rules: [{
@@ -33,19 +34,21 @@ const config = {
         }]
     },
     output: {
-        path: path.join(__dirname, '/dist/'),
+        path: path.join(ctxPath, './dist'),
         filename: '[name].js',
     },
 
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: ctxPath,
         compress: true,
         port: 8080,
+        hot: true,
         writeToDisk: true,
     },
 
     plugins: [
         new HtmlWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ],
 
     optimization: {
@@ -56,6 +59,7 @@ const config = {
 };
 
 config.devtool = 'source-map';
+console.log('fuck', config.context);
 
 module.exports = (env, argv) => {
     return ({
